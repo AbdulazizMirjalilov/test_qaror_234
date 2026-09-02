@@ -236,6 +236,3 @@ Skript threshold qarorlari aniqligini, hit@1 / hit@k koʻrsatkichlarini va score
 
 - Hujjat matni faqat lotin alifbosida indekslangan; kirill versiyasi (`data/234_11.05.2026_уз.doc`) alohida indekslanmaydi. Kirill savollar qoidaviy transliteratsiya orqali qidiriladi — noaniq yoki kam uchraydigan soʻzlar uchun retrieval sifati biroz pasayishi mumkin.
 - Similarity score chegarasi (0.55) kichik eval toʻplam asosida tanlangan; kengroq toʻplam bilan `scripts/evaluate_retrieval.py` orqali qayta baholash tavsiya etiladi.
-#   t e s t _ q a r o r _ 2 3 4  
- #   t e s t _ q a r o r _ 2 3 4  
- 
