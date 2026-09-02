@@ -1,0 +1,28 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama_models:/root/.ollama
+    ports:
+      - "11434:11434"
+
+  api:
+    build: .
+    depends_on:
+      - ollama
+    environment:
+      QAROR_OLLAMA_BASE_URL: http://ollama:11434
+    ports:
+      - "8000:8000"
+    volumes:
+      # cache the ~2GB BGE-M3 download across container rebuilds
+      - hf_cache:/srv/qaror/.cache/huggingface
+
+volumes:
+  ollama_models:
+  hf_cache:
+# Before building: the Chroma index is not in git, and the image COPYs data/,
+# so build it on the host first:
+#   make ingest
+# First run: pull the LLM into the ollama container once:
+#   docker compose exec ollama ollama pull qwen2.5:7b-instruct

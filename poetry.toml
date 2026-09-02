@@ -1,0 +1,4 @@
+# Keep the virtualenv inside the project (./.venv) so tooling and editors
+# find it without extra configuration.
+[virtualenvs]
+in-project = true

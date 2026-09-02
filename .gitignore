@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment & secrets
+.env
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+
+# Model cache (downloaded on first run)
+.cache/
+
+# Build artifacts of `make ingest` -- rebuilt from the source .doc, so they
+# are derived state that can silently drift from the code that generates it.
+# The vector index is the worst offender: the embedder drops and recreates
+# the collection on every run and Chroma names each one by a fresh UUID, so
+# a rebuild orphans the previous directory instead of replacing it, leaving
+# the committed copy pointing somewhere chroma.sqlite3 no longer does.
+#
+# NOTE: the Docker image COPYs data/, so `make ingest` must run on the host
+# before `docker build` (see the Dockerfile).
+data/chroma_db/
+data/parsed_blocks.json
+data/chunks.json
+
+# Test / lint artifacts
+.pytest_cache/
+.ruff_cache/

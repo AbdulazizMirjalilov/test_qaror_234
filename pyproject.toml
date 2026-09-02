@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "qaror-234-rag"
+version = "0.1.0"
+description = "RAG tizimi: Vazirlar Mahkamasining 234-son qarori boʻyicha savol-javob"
+authors = ["Abdulaziz <sobirovsardorbeksn@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.15"
+fastapi = "0.128.8"
+uvicorn = { extras = ["standard"], version = "0.39.0" }
+httpx = "0.28.1"
+beautifulsoup4 = "4.15.0"
+lxml = "6.1.2"
+pydantic = "2.13.5"
+pydantic-settings = "2.11.0"
+python-dotenv = "1.2.1"
+tenacity = "9.1.2"
+loguru = "0.7.3"
+
+# Heavy ML stack in its own group so CI (and other light environments) can
+# `poetry install --without ml` -- the test suite injects a fake retriever
+# and never needs torch/chromadb.
+[tool.poetry.group.ml.dependencies]
+chromadb = "1.5.9"
+sentence-transformers = "5.1.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.4.1"
+pre-commit = "^4.0"
+ruff = "^0.9"
+
+[build-system]
+requires = ["poetry-core>=1.8.0"]
+build-backend = "poetry.core.masonry.api"
+
+# ---------------------------------------------------------------------------
+# Tooling
+# ---------------------------------------------------------------------------
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# imports intentionally follow the importorskip guard
+"tests/test_retriever.py" = ["E402"]
+# LLM prompt text must stay verbatim -- no rewrapping
+"app/services/prompts.py" = ["E501"]

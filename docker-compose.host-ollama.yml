@@ -1,0 +1,26 @@
+# Local-development override: run ONLY the API in Docker and reuse what is
+# already installed on the HOST -- the local Ollama (with its pulled model)
+# and the host's HuggingFace cache (BGE-M3) -- instead of downloading
+# everything again inside containers.
+#
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.host-ollama.yml up --build
+#   (yoki: make docker-up-host)
+#
+# The default docker-compose.yml stays fully self-contained for machines
+# with nothing installed.
+
+services:
+  api:
+    environment:
+      # host.docker.internal resolves to the host on Docker Desktop (Win/Mac)
+      QAROR_OLLAMA_BASE_URL: http://host.docker.internal:11434
+    depends_on: !reset []
+    volumes:
+      # reuse the host's BGE-M3 download (same target overrides the named
+      # volume from the base file). On Linux replace USERPROFILE with HOME.
+      - ${USERPROFILE}/.cache/huggingface:/srv/qaror/.cache/huggingface
+
+  ollama:
+    # excluded from this mode -- the host's Ollama is used instead
+    profiles: ["container-ollama"]

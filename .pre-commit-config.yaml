@@ -1,0 +1,27 @@
+# Install the hooks once with: make precommit  (or: poetry run pre-commit install)
+# Run on everything:            poetry run pre-commit run --all-files
+
+# data/ holds the source document, parsed JSON, and the binary Chroma index --
+# formatters must never touch it.
+exclude: ^data/
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        # the Chroma index (~8 MB) is deliberately committed
+        args: [--maxkb=15000]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.10
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format

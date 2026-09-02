@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Aeroportlar uchun davlat ekologik ekspertizasini oʻtkazish muddati qancha?",
+    "expect_found": true,
+    "expected_ilova_num": 1
+  },
+  {
+    "question": "Aeroportlar uchun ekspertiza toʻlovi qancha BXM?",
+    "expect_found": true,
+    "expected_ilova_num": 1
+  },
+  {
+    "question": "Davlat ekologik ekspertizasini kim oʻtkazadi?",
+    "expect_found": true,
+    "expected_ilova_num": 2,
+    "expected_punkt_num": "27"
+  },
+  {
+    "question": "Davlat ekologik ekspertizasi xulosasini kim imzolaydi va tasdiqlaydi?",
+    "expect_found": true,
+    "expected_ilova_num": 2,
+    "expected_punkt_num": "31"
+  },
+  {
+    "question": "Malaka sertifikatini bekor qilish qanday hollarda amalga oshiriladi?",
+    "expect_found": true,
+    "expected_ilova_num": 7
+  },
+  {
+    "question": "Malaka sertifikatining bekor qilingani toʻgʻrisidagi maʼlumotlar qayerda eʼlon qilinadi?",
+    "expect_found": true,
+    "expected_ilova_num": 7,
+    "expected_punkt_num": "45"
+  },
+  {
+    "question": "Reyestrda qanday maʼlumotlar qayd etiladi?",
+    "expect_found": true,
+    "expected_ilova_num": 7,
+    "expected_punkt_num": "47"
+  },
+  {
+    "question": "Экспертиза хулосасини ким имзолайди?",
+    "expect_found": true,
+    "expected_ilova_num": 2,
+    "comment": "Cyrillic query -- must be transliterated before retrieval"
+  },
+  {
+    "question": "Oʻzbekistonda soliq stavkalari qancha?",
+    "expect_found": false,
+    "comment": "Deliberately out-of-scope"
+  },
+  {
+    "question": "Futbol boʻyicha jahon chempionati qachon boʻladi?",
+    "expect_found": false,
+    "comment": "Deliberately out-of-scope"
+  },
+  {
+    "question": "Mashina haydash guvohnomasini olish tartibi qanday?",
+    "expect_found": false,
+    "comment": "Deliberately out-of-scope (another legal domain)"
+  }
+]
